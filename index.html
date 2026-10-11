@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>АНТИ КЛАУД 2 — Скачать и установить</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ===== ЗАДНИЙ ФОН С СЕТКОЙ ===== */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,107,0,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,107,0,0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -2;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(255,107,0,0.15), transparent 60%);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* ===== ШАПКА ===== */
+  header {
+    padding: 25px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,107,0,0.15);
+  }
+
+  .logo-wrap { display: flex; align-items: center; gap: 15px; }
+
+  .logo {
+    width: 55px; height: 55px;
+    border-radius: 14px;
+    background: #ff6b00;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: logoPulse 3s ease-in-out infinite;
+  }
+
+  .logo svg { width: 40px; height: 40px; }
+
+  @keyframes logoPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(255,107,0,0.4); }
+    50% { box-shadow: 0 0 40px rgba(255,107,0,0.8); }
+  }
+
+  .logo-text h1 {
+    font-size: 22px;
+    color: #ff6b00;
+    letter-spacing: 1px;
+    font-weight: 800;
+  }
+
+  .logo-text p {
+    font-size: 10px;
+    color: #888;
+    letter-spacing: 2px;
+  }
+
+  nav a {
+    color: #ccc;
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 14px;
+    transition: color 0.3s;
+  }
+
+  nav a:hover { color: #ff6b00; }
+
+  /* ===== HERO ===== */
+  .hero {
+    text-align: center;
+    padding: 80px 20px 60px;
+    animation: fadeUp 1s ease-out;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero h2 {
+    font-size: clamp(36px, 6vw, 72px);
+    line-height: 1.1;
+    font-weight: 900;
+    margin-bottom: 20px;
+  }
+
+  .hero h2 .orange { color: #ff6b00; }
+
+  .hero p {
+    font-size: 18px;
+    color: #aaa;
+    max-width: 700px;
+    margin: 0 auto 40px;
+  }
+
+  .hero p .orange { color: #ff6b00; font-weight: 600; }
+
+  /* ===== КНОПКИ ===== */
+  .btn-row {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 16px 40px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
+    letter-spacing: 0.5px;
+    font-family: inherit;
+  }
+
+  .btn-primary {
+    background: #ff6b00;
+    color: #000;
+    box-shadow: 0 0 30px rgba(255,107,0,0.4);
+  }
+
+  .btn-primary:hover {
+    background: #ffa040;
+    transform: translateY(-3px);
+    box-shadow: 0 0 50px rgba(255,107,0,0.7);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: #ff6b00;
+    border: 2px solid #ff6b00;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255,107,0,0.1);
+    transform: translateY(-3px);
+  }
+
+  /* ===== КНОПКА ДЛЯ ТЕЛЕФОНОВ ===== */
+  .btn-phone {
+    background: linear-gradient(135deg, #2196f3, #00bcd4);
+    color: #fff;
+    box-shadow: 0 0 30px rgba(33,150,243,0.4);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn-phone:hover {
+    background: linear-gradient(135deg, #42a5f5, #26c6da);
+    transform: translateY(-3px);
+    box-shadow: 0 0 50px rgba(33,150,243,0.7);
+  }
+
+  .btn-phone svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+  }
+
+  /* ===== СЕКЦИИ ===== */
+  section {
+    padding: 60px 50px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  section h3 {
+    font-size: 32px;
+    color: #ff6b00;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 800;
+  }
+
+  /* ===== ШАГИ УСТАНОВКИ ===== */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .step {
+    background: #141414;
+    border: 1px solid rgba(255,107,0,0.2);
+    border-radius: 16px;
+    padding: 25px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .step::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, transparent, #ff6b00, transparent);
+    transform: translateX(-100%);
+    transition: transform 0.5s;
+  }
+
+  .step:hover::before { transform: translateX(100%); }
+
+  .step:hover {
+    border-color: #ff6b00;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(255,107,0,0.2);
+  }
+
+  .step-num {
+    display: inline-block;
+    width: 40px; height: 40px;
+    background: #ff6b00;
+    color: #000;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 900;
+    text-align: center;
+    line-height: 40px;
+    margin-bottom: 15px;
+  }
+
+  .step h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+
+  .step p {
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 10px;
+  }
+
+  .step code {
+    display: block;
+    background: #000;
+    color: #ffa040;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 12px;
+    margin-top: 10px;
+    word-break: break-all;
+    border-left: 3px solid #ff6b00;
+  }
+
+  /* ===== МОДЕЛИ ===== */
+  .models {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .model-card {
+    background: #141414;
+    border: 2px solid rgba(255,107,0,0.2);
+    border-radius: 16px;
+    padding: 25px;
+    transition: all 0.3s;
+  }
+
+  .model-card:hover {
+    border-color: #ff6b00;
+    box-shadow: 0 0 30px rgba(255,107,0,0.3);
+    transform: scale(1.03);
+  }
+
+  .model-card h4 {
+    font-size: 22px;
+    color: #ff6b00;
+    margin-bottom: 10px;
+    font-weight: 800;
+  }
+
+  .model-card .caps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 15px;
+  }
+
+  .cap {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(255,107,0,0.15);
+    color: #ffa040;
+    border: 1px solid rgba(255,107,0,0.3);
+  }
+
+  /* ===== ПОДВАЛ ===== */
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 1px solid rgba(255,107,0,0.15);
+    color: #666;
+    font-size: 13px;
+  }
+
+  footer a {
+    color: #ff6b00;
+    text-decoration: none;
+  }
+
+  footer a:hover { text-decoration: underline; }
+
+  /* ===== АДАПТИВ ===== */
+  @media (max-width: 700px) {
+    header { padding: 15px 20px; flex-direction: column; gap: 15px; }
+    nav a { margin: 0 10px; font-size: 12px; }
+    section { padding: 40px 20px; }
+    .hero { padding: 40px 15px; }
+    .btn-phone { padding: 14px 30px; font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-wrap">
+    <div class="logo">
+      <!-- Звезда + перечёркнутый круг -->
+      <svg viewBox="0 0 24 24" fill="none">
+        <g>
+          <path d="M12 2 L13 8 L12 10 L11 8 Z M12 22 L13 16 L12 14 L11 16 Z
+                   M2 12 L8 13 L10 12 L8 11 Z M22 12 L16 13 L14 12 L16 11 Z
+                   M5 5 L10 9 L11 10 L9 8 Z M19 19 L14 15 L13 14 L15 16 Z
+                   M19 5 L15 10 L14 11 L16 9 Z M5 19 L9 14 L10 13 L8 15 Z"
+                fill="#000"/>
+        </g>
+        <circle cx="12" cy="12" r="9" stroke="#e53935" stroke-width="2.5"/>
+        <line x1="5.5" y1="5.5" x2="18.5" y2="18.5" stroke="#e53935" stroke-width="2.5"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <h1>АНТИ КЛАУД</h1>
+      <p>DOWNLOAD &amp; SETUP</p>
+    </div>
+  </div>
+  <nav>
+    <a href="#install">Установка</a>
+    <a href="#models">Модели</a>
+    <a href="https://gentle-brioche-d4a5ba.netlify.app" target="_blank">Основной сайт →</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <h2>Локальный ИИ<br>в <span class="orange">твоих руках</span></h2>
+  <p>Скачай <span class="orange">Анти Клауд 2</span>, установи Ollama, запусти модель — и получи
+     ИИ <span class="orange">без облака, без API-ключей, без слежки</span>.</p>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="downloadCode()">⬇ Скачать anticloud2.py</button>
+    <a class="btn btn-secondary" href="#install">Инструкция →</a>
+    <a class="btn btn-phone" href="https://gsfgsfesfeserer.github.io/ksjewfn" target="_blank">
+      <svg viewBox="0 0 24 24">
+        <path d="M17 1H7c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-5 21c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm5-3H7V5h10v14z"/>
+      </svg>
+      Для телефона →
+    </a>
+  </div>
+</div>
+
+<!-- УСТАНОВКА -->
+<section id="install">
+  <h3>УСТАНОВКА ЗА 5 ШАГОВ</h3>
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4>Установи Python</h4>
+      <p>Скачай с python.org. При установке поставь галочку <b>«Add to PATH»</b>.</p>
+      <code>python.org → Download</code>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4>Установи Ollama</h4>
+      <p>Скачай с ollama.com. Нужна для текстовых моделей.</p>
+      <code>ollama.com → Download</code>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4>Скачай anticloud2.py</h4>
+      <p>Нажми кнопку ниже — файл скачается.</p>
+      <button class="btn btn-primary" style="padding:8px 20px;font-size:13px;margin-top:8px" onclick="downloadCode()">⬇ Скачать код</button>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <h4>Установи библиотеки</h4>
+      <p>Открой PowerShell и выполни:</p>
+      <code>pip install customtkinter pillow ollama diffusers transformers accelerate safetensors imageio[ffmpeg] imageio-ffmpeg</code>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <h4>Запусти</h4>
+      <p>В той же PowerShell:</p>
+      <code>cd C:\Users\ТвоёИмя
+python anticloud2.py</code>
+    </div>
+
+  </div>
+</section>
+
+<!-- МОДЕЛИ -->
+<section id="models">
+  <h3>4 МОДЕЛИ ВНУТРИ</h3>
+  <div class="models">
+
+    <div class="model-card">
+      <h4>Zero 1V</h4>
+      <p>Быстрая. Только текст.</p>
+      <div class="caps">
+        <span class="cap">текст</span>
+      </div>
+    </div>
+
+    <div class="model-card">
+      <h4>Zero 2V7B+</h4>
+      <p>Умеет рисовать картинки.</p>
+      <div class="caps">
+        <span class="cap">текст</span>
+        <span class="cap">картинки</span>
+      </div>
+    </div>
+
+    <div class="model-card">
+      <h4>Ongo 3V</h4>
+      <p>Полный набор: текст, картинки, видео.</p>
+      <div class="caps">
+        <span class="cap">текст</span>
+        <span class="cap">картинки</span>
+        <span class="cap">видео</span>
+      </div>
+    </div>
+
+    <div class="model-card">
+      <h4>Ongo 2</h4>
+      <p>Пишет код игр на Python.</p>
+      <div class="caps">
+        <span class="cap">код игр</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  Серия «Анти Клауд» · <a href="https://gentle-brioche-d4a5ba.netlify.app" target="_blank">gentle-brioche-d4a5ba.netlify.app</a><br>
+  © 2026 · Локальный ИИ без облака
+</footer>
+
+<script>
+// ===== КОД ПРИЛОЖЕНИЯ (встроен в сайт) =====
+const APP_CODE = `# -*- coding: utf-8 -*-
+# АНТИ КЛАУД 2 — менеджер моделей
+# Серия Анти Клауд · https://gentle-brioche-d4a5ba.netlify.app
+
+import customtkinter as ctk
+import tkinter as tk
+from tkinter import filedialog
+from PIL import Image, ImageDraw
+import ollama
+import threading
+import webbrowser
+import os
+import math
+
+SITE_URL = "https://gentle-brioche-d4a5ba.netlify.app"
+APP_NAME = "АНТИ КЛАУД"
+
+ORANGE = "#ff6b00"
+ORANGE_DARK = "#cc5500"
+ORANGE_LIGHT = "#ffa040"
+RED = "#e53935"
+BLACK = "#0a0a0a"
+DARK = "#141414"
+DARKER = "#0f0f0f"
+GRAY = "#1f1f1f"
+GRAY_LIGHT = "#2a2a2a"
+TEXT = "#ffffff"
+TEXT_DIM = "#888888"
+
+LANGUAGES = {"Русский": "русском", "English": "English", "日本語": "日本語", "中文": "中文"}
+LOGO_PATH = os.path.join(os.path.expanduser("~"), "anticloud_logo.png")
+
+VIDEO_TRIGGERS = ["сделай видео", "сгенерируй видео", "анимируй", "анимация",
+                  "make video", "generate video", "animate"]
+IMAGE_TRIGGERS = ["нарисуй", "сгенерируй картинку", "создай картинку", "создай изображение",
+                  "нарисуй картинку", "draw", "generate image", "create image"]
+CODE_TRIGGERS = ["напиши игру", "код игры", "напиши код игры", "сделай игру", "игру змейку",
+                 "игру тетрис", "pygame", "write game code"]
+
+MODELS = {
+    "zero1v": {"full_name": "Zero 1V", "ollama": "qwen2.5:3b",
+        "can_text": True, "can_image": False, "can_video": False, "can_code": False,
+        "system": "Ты — Zero 1V. Быстрый ассистент. Отвечай кратко."},
+    "zero2v7b+": {"full_name": "Zero 2V7B+", "ollama": "qwen2.5:7b",
+        "can_text": True, "can_image": True, "can_video": False, "can_code": False,
+        "system": "Ты — Zero 2V7B+. Умеешь картинки и текст."},
+    "ongo3v": {"full_name": "Ongo 3V", "ollama": "qwen2.5:7b",
+        "can_text": True, "can_image": True, "can_video": True, "can_code": False,
+        "system": "Ты — Ongo 3V. Умеешь всё."},
+    "ongo2": {"full_name": "Ongo 2", "ollama": "qwen2.5:7b",
+        "can_text": False, "can_image": False, "can_video": False, "can_code": True,
+        "system": "Ты — Ongo 2. Пишешь только код игр."},
+}
+
+def make_logo(path, size=200):
+    img = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle([0, 0, size, size], radius=int(size * 0.22), fill=ORANGE)
+    cx, cy = size / 2, size / 2
+    pts = []
+    for i in range(24):
+        a = math.pi * i / 12 - math.pi / 2
+        r = size * 0.38 if i % 2 == 0 else size * 0.14
+        pts.append((cx + r * math.cos(a), cy + r * math.sin(a)))
+    d.polygon(pts, fill=BLACK)
+    r = size * 0.40; w = int(size * 0.075)
+    d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=RED, width=w)
+    d.line([cx - r*0.72, cy - r*0.72, cx + r*0.72, cy + r*0.72], fill=RED, width=w)
+    img.save(path)
+
+class Chat:
+    def __init__(self, name):
+        self.name = name; self.history = []; self.messages_display = []
+        self.model_key = "ongo3v"
+
+class AIClient:
+    def __init__(self):
+        self.sd_pipe = None; self.svd_pipe = None
+    def load_sd(self, cb=None):
+        if self.sd_pipe is not None: return True
+        try:
+            from diffusers import StableDiffusionPipeline
+            import torch
+            device = "cuda" if torch.cuda.is_available() else "cpu"
+            dtype = torch.float16 if device == "cuda" else torch.float32
+            self.sd_pipe = StableDiffusionPipeline.from_pretrained(
+                "runwayml/stable-diffusion-v1-5", torch_dtype=dtype, safety_checker=None
+            ).to(device)
+            return True
+        except Exception as e:
+            if cb: cb("Ошибка SD: " + str(e))
+            return False
+    def generate_image(self, prompt, cb=None):
+        if self.sd_pipe is None:
+            if not self.load_sd(cb): return None
+        try:
+            if cb: cb("Рисую...")
+            return self.sd_pipe(prompt, num_inference_steps=20).images[0]
+        except Exception as e:
+            if cb: cb("Ошибка: " + str(e))
+            return None
+    def generate_video(self, prompt, cb=None):
+        if cb: cb("Картинка...")
+        image = self.generate_image(prompt, cb)
+        if image is None: return None
+        try:
+            from diffusers import StableVideoDiffusionPipeline
+            import torch, imageio, numpy as np
+            if self.svd_pipe is None:
+                self.svd_pipe = StableVideoDiffusionPipeline.from_pretrained(
+                    "stabilityai/stable-video-diffusion-img2vid-xt",
+                    torch_dtype=torch.float16, variant="fp16")
+                self.svd_pipe.enable_model_cpu_offload()
+                self.svd_pipe.enable_vae_slicing()
+            if cb: cb("Анимирую...")
+            img = image.resize((1024, 576))
+            gen = torch.manual_seed(42)
+            frames = self.svd_pipe(img, decode_chunk_size=8, generator=gen).frames[0]
+            od = os.path.join(os.path.expanduser("~"), "Videos", "AntiCloud")
+            os.makedirs(od, exist_ok=True)
+            op = os.path.join(od, "vid_" + str(len(os.listdir(od)) + 1) + ".mp4")
+            w = imageio.get_writer(op, fps=7)
+            for f in frames: w.append_data(np.array(f))
+            w.close()
+            return op
+        except Exception as e:
+            if cb: cb("Ошибка видео: " + str(e))
+            return None
+    def describe_image(self, path):
+        try:
+            r = ollama.chat(model="minicpm-v", messages=[{
+                "role": "user", "content": "Describe this image in detail. English only.",
+                "images": [path]}])
+            return r["message"]["content"]
+        except Exception as e:
+            return "[vision error: " + str(e) + "]"
+    def ask(self, chat, question, model_key, language, image_path=None):
+        m = MODELS[model_key]
+        desc = self.describe_image(image_path) if image_path else ""
+        lang = LANGUAGES.get(language, "русском")
+        system = m["system"] + " Отвечай на " + lang + " языке."
+        if desc: system += "\\n\\nОписание изображения:\\n" + desc
+        messages = [{"role": "system", "content": system}] + chat.history + [{"role": "user", "content": question}]
+        try:
+            r = ollama.chat(model=m["ollama"], messages=messages)
+            answer = r["message"]["content"]
+        except Exception as e:
+            return "[Ошибка: " + str(e) + "]"
+        chat.history += [{"role": "user", "content": question}, {"role": "assistant", "content": answer}]
+        return answer
+
+class AntiCloudApp(ctk.CTk):
+    def __init__(self):
+        super().__init__()
+        ctk.set_appearance_mode("dark")
+        self.title(APP_NAME + " 2")
+        self.geometry("1200x800")
+        self.configure(fg_color=BLACK)
+        self.ai = AIClient()
+        self.chats = []; self.current_chat = None
+        self.current_image_path = None
+        self.pulse_state = 0; self.pulse_dir = 1
+        if not os.path.exists(LOGO_PATH): make_logo(LOGO_PATH)
+        try:
+            li = Image.open(LOGO_PATH)
+            self.logo_img = ctk.CTkImage(light_image=li, dark_image=li, size=(48, 48))
+        except Exception:
+            self.logo_img = None
+        self.build_ui()
+        self.new_chat()
+        self.set_status("Готово. Пиши.")
+    def set_status(self, text):
+        try: self.after(0, lambda: self.status_label.configure(text=text))
+        except Exception: pass
+    def build_ui(self):
+        self.sidebar = ctk.CTkFrame(self, fg_color=DARKER, width=280, corner_radius=0)
+        self.sidebar.pack(side="left", fill="y")
+        self.sidebar.pack_propagate(False)
+        lf = ctk.CTkFrame(self.sidebar, fg_color=DARKER)
+        lf.pack(fill="x", padx=15, pady=(20, 5))
+        if self.logo_img: ctk.CTkLabel(lf, image=self.logo_img, text="").pack(side="left")
+        self.title_label = ctk.CTkLabel(lf, text=APP_NAME,
+            font=ctk.CTkFont(family="Segoe UI", size=20, weight="bold"), text_color=ORANGE)
+        self.title_label.pack(side="left", padx=10)
+        ctk.CTkButton(self.sidebar, text="+  НОВЫЙ ЧАТ", command=self.new_chat,
+            fg_color=ORANGE, hover_color=ORANGE_DARK, text_color=BLACK,
+            font=ctk.CTkFont(size=13, weight="bold"), height=44, corner_radius=10
+        ).pack(fill="x", padx=15, pady=15)
+        ctk.CTkLabel(self.sidebar, text="МОДЕЛЬ",
+            font=ctk.CTkFont(size=11, weight="bold"), text_color=TEXT_DIM
+        ).pack(anchor="w", padx=20, pady=(5, 5))
+        self.model_var = ctk.StringVar(value="ongo3v")
+        ctk.CTkOptionMenu(self.sidebar, variable=self.model_var,
+            values=list(MODELS.keys()), command=self.change_model,
+            fg_color=GRAY, button_color=ORANGE_DARK, button_hover_color=ORANGE,
+            text_color=ORANGE, dropdown_fg_color=DARK, dropdown_hover_color=ORANGE_DARK,
+            font=ctk.CTkFont(size=13, weight="bold"), height=40, corner_radius=8
+        ).pack(fill="x", padx=15, pady=(0, 5))
+        self.model_desc = ctk.CTkLabel(self.sidebar, text="", text_color=TEXT_DIM,
+            font=ctk.CTkFont(size=10), wraplength=250)
+        self.model_desc.pack(anchor="w", padx=20, pady=(0, 10))
+        ctk.CTkFrame(self.sidebar, fg_color=GRAY, height=1).pack(fill="x", padx=15, pady=5)
+        ctk.CTkLabel(self.sidebar, text="ЧАТЫ",
+            font=ctk.CTkFont(size=11, weight="bold"), text_color=TEXT_DIM
+        ).pack(anchor="w", padx=20, pady=(10, 5))
+        self.chat_list = ctk.CTkScrollableFrame(self.sidebar, fg_color=DARKER, corner_radius=0)
+        self.chat_list.pack(fill="both", expand=True, padx=10, pady=5)
+        ctk.CTkButton(self.sidebar, text="ОТКРЫТЬ САЙТ",
+            command=lambda: webbrowser.open(SITE_URL),
+            fg_color="transparent", hover_color=ORANGE_DARK, text_color=ORANGE,
+            border_color=ORANGE, border_width=2, font=ctk.CTkFont(size=11, weight="bold"),
+            height=38, corner_radius=8).pack(fill="x", padx=15, pady=(5, 15))
+        self.main = ctk.CTkFrame(self, fg_color=BLACK, corner_radius=0)
+        self.main.pack(side="right", fill="both", expand=True)
+        top = ctk.CTkFrame(self.main, fg_color=DARK, corner_radius=0, height=70)
+        top.pack(fill="x"); top.pack_propagate(False)
+        self.chat_title = ctk.CTkLabel(top, text="Новый чат",
+            font=ctk.CTkFont(size=16, weight="bold"), text_color=TEXT)
+        self.chat_title.pack(side="left", padx=25)
+        self.lang_var = ctk.StringVar(value="Русский")
+        ctk.CTkOptionMenu(top, variable=self.lang_var, values=list(LANGUAGES.keys()),
+            fg_color=GRAY, button_color=ORANGE_DARK, button_hover_color=ORANGE,
+            text_color=TEXT, dropdown_fg_color=DARK, dropdown_hover_color=ORANGE_DARK,
+            font=ctk.CTkFont(size=12), width=140, height=36, corner_radius=8
+        ).pack(side="right", padx=25)
+        self.status_frame = ctk.CTkFrame(self.main, fg_color=DARK, corner_radius=0, height=36)
+        self.status_frame.pack(fill="x"); self.status_frame.pack_propagate(False)
+        self.status_label = ctk.CTkLabel(self.status_frame, text="Запуск...",
+            font=ctk.CTkFont(size=11), text_color=ORANGE_LIGHT)
+        self.status_label.pack(pady=8)
+        self.messages_frame = ctk.CTkScrollableFrame(self.main, fg_color=BLACK, corner_radius=0)
+        self.messages_frame.pack(fill="both", expand=True, padx=10, pady=10)
+        bottom = ctk.CTkFrame(self.main, fg_color=DARK, corner_radius=0, height=150)
+        bottom.pack(fill="x", side="bottom"); bottom.pack_propagate(False)
+        input_row = ctk.CTkFrame(bottom, fg_color=DARK)
+        input_row.pack(fill="x", padx=20, pady=(15, 8))
+        self.entry = ctk.CTkEntry(input_row, placeholder_text="Напиши что угодно...",
+            fg_color=GRAY, text_color=TEXT, border_color=ORANGE, border_width=2,
+            font=ctk.CTkFont(size=13), height=48, corner_radius=12)
+        self.entry.pack(side="left", fill="x", expand=True, padx=(0, 8))
+        self.entry.bind("<Return>", lambda e: self.send())
+        ctk.CTkButton(input_row, text="➤", command=self.send,
+            fg_color=ORANGE, hover_color=ORANGE_DARK, text_color=BLACK,
+            font=ctk.CTkFont(size=20, weight="bold"), width=55, height=48, corner_radius=12
+        ).pack(side="right")
+        actions = ctk.CTkFrame(bottom, fg_color=DARK)
+        actions.pack(fill="x", padx=20, pady=(0, 15))
+        ctk.CTkButton(actions, text="📁 КАРТИНКА", command=self.pick_image,
+            fg_color=GRAY_LIGHT, hover_color=ORANGE_DARK, text_color=TEXT,
+            font=ctk.CTkFont(size=11, weight="bold"), height=36, corner_radius=8, width=130
+        ).pack(side="left", padx=3)
+        self.img_label = ctk.CTkLabel(actions, text="", text_color=TEXT_DIM,
+            font=ctk.CTkFont(size=10))
+        self.img_label.pack(side="left", padx=10)
+        ctk.CTkButton(actions, text="🗑 ОЧИСТИТЬ", command=self.clear_current,
+            fg_color=GRAY_LIGHT, hover_color="#8b0000", text_color=TEXT,
+            font=ctk.CTkFont(size=11, weight="bold"), height=36, corner_radius=8, width=130
+        ).pack(side="right", padx=3)
+        self.change_model("ongo3v")
+        self.animate_pulse()
+    def animate_pulse(self):
+        self.pulse_state += self.pulse_dir * 0.04
+        if self.pulse_state >= 1: self.pulse_state = 1; self.pulse_dir = -1
+        elif self.pulse_state <= 0: self.pulse_state = 0; self.pulse_dir = 1
+        t = self.pulse_state
+        color = "#{:02x}{:02x}{:02x}".format(int(255), int(107 + 63 * t), int(0 + 80 * t))
+        try: self.title_label.configure(text_color=color)
+        except Exception: pass
+        self.after(60, self.animate_pulse)
+    def change_model(self, key):
+        m = MODELS[key]
+        caps = []
+        if m["can_text"]: caps.append("текст")
+        if m["can_image"]: caps.append("картинки")
+        if m["can_video"]: caps.append("видео")
+        if m["can_code"]: caps.append("код игр")
+        self.model_desc.configure(text=m["full_name"] + " · " + " + ".join(caps))
+    def new_chat(self):
+        chat = Chat("Чат " + str(len(self.chats) + 1))
+        chat.model_key = self.model_var.get() if hasattr(self, "model_var") else "ongo3v"
+        self.chats.append(chat); self.current_chat = chat
+        self.refresh_chat_list(); self.switch_chat(chat)
+    def refresh_chat_list(self):
+        for w in self.chat_list.winfo_children(): w.destroy()
+        for chat in self.chats:
+            ctk.CTkButton(self.chat_list, text="  " + chat.name,
+                command=lambda c=chat: self.switch_chat(c),
+                fg_color=DARK if chat == self.current_chat else "transparent",
+                hover_color=GRAY_LIGHT,
+                text_color=TEXT if chat == self.current_chat else TEXT_DIM,
+                anchor="w", font=ctk.CTkFont(size=12), height=38, corner_radius=8
+            ).pack(fill="x", pady=2)
+    def switch_chat(self, chat):
+        self.current_chat = chat
+        self.chat_title.configure(text=chat.name)
+        if chat.model_key in MODELS:
+            self.model_var.set(chat.model_key); self.change_model(chat.model_key)
+        self.refresh_chat_list(); self.render_history()
+    def render_history(self):
+        for w in self.messages_frame.winfo_children(): w.destroy()
+        for m in self.current_chat.messages_display:
+            self.add_bubble(m["role"], m["text"])
+    def add_bubble(self, role, text):
+        is_user = role == "user"
+        b = ctk.CTkFrame(self.messages_frame, fg_color=GRAY if is_user else DARK, corner_radius=14)
+        b.pack(fill="x", pady=6, padx=10)
+        ctk.CTkLabel(b, text=("ВЫ:  " if is_user else "АНТИ КЛАУД:  ") + text,
+            font=ctk.CTkFont(size=12), text_color=TEXT if is_user else ORANGE_LIGHT,
+            wraplength=750, justify="left", anchor="w").pack(padx=18, pady=12, anchor="w")
+        try: self.messages_frame._parent_canvas.yview_moveto(1.0)
+        except Exception: pass
+    def add_image_bubble(self, pil_image, path):
+        b = ctk.CTkFrame(self.messages_frame, fg_color=DARK, corner_radius=14)
+        b.pack(fill="x", pady=6, padx=10)
+        ctk.CTkLabel(b, text="АНТИ КЛАУД:  вот картинка",
+            font=ctk.CTkFont(size=12), text_color=ORANGE_LIGHT, anchor="w"
+        ).pack(padx=18, pady=(12, 6), anchor="w")
+        img = pil_image.copy(); img.thumbnail((400, 400))
+        ci = ctk.CTkImage(light_image=img, dark_image=img, size=img.size)
+        lbl = ctk.CTkLabel(b, image=ci, text=""); lbl.image = ci
+        lbl.pack(padx=18, pady=(0, 8), anchor="w")
+        ctk.CTkLabel(b, text="💾 " + path, font=ctk.CTkFont(size=10),
+            text_color=TEXT_DIM, anchor="w").pack(padx=18, pady=(0, 12), anchor="w")
+        try: self.messages_frame._parent_canvas.yview_moveto(1.0)
+        except Exception: pass
+    def add_video_bubble(self, path):
+        b = ctk.CTkFrame(self.messages_frame, fg_color=DARK, corner_radius=14)
+        b.pack(fill="x", pady=6, padx=10)
+        ctk.CTkLabel(b, text="АНТИ КЛАУД:  видео готово",
+            font=ctk.CTkFont(size=12), text_color=ORANGE_LIGHT, anchor="w"
+        ).pack(padx=18, pady=(12, 6), anchor="w")
+        ctk.CTkButton(b, text="▶  ОТКРЫТЬ ВИДЕО", command=lambda: os.startfile(path),
+            fg_color=ORANGE, hover_color=ORANGE_DARK, text_color=BLACK,
+            font=ctk.CTkFont(size=11, weight="bold"), height=38, corner_radius=8
+        ).pack(padx=18, pady=(0, 12), anchor="w")
+    def pick_image(self):
+        path = filedialog.askopenfilename(
+            filetypes=[("Изображения", "*.png *.jpg *.jpeg *.bmp *.webp")])
+        if path:
+            self.current_image_path = path
+            self.img_label.configure(text="📎 " + os.path.basename(path))
+    def send(self):
+        q = self.entry.get().strip()
+        if not q: return
+        self.entry.delete(0, "end")
+        self.current_chat.model_key = self.model_var.get()
+        m = MODELS[self.current_chat.model_key]
+        self.current_chat.messages_display.append({"role": "user", "text": q})
+        self.add_bubble("user", q)
+        def worker():
+            ql = q.lower()
+            wv = any(t in ql for t in VIDEO_TRIGGERS)
+            wi = any(t in ql for t in IMAGE_TRIGGERS)
+            wc = any(t in ql for t in CODE_TRIGGERS)
+            if not (wv or wi or wc):
+                self.after(0, lambda: self.add_bubble("assistant", "💭 Думаю..."))
+                ans = self.ai.ask(self.current_chat, q, self.current_chat.model_key,
+                                  self.lang_var.get(), self.current_image_path)
+                self.current_chat.messages_display.append({"role": "assistant", "text": ans})
+                self.after(0, lambda: self.add_bubble("assistant", ans)); return
+            if wv and not m["can_video"]:
+                self.after(0, lambda: self.add_bubble("assistant",
+                    "⛔ " + m["full_name"] + " не умеет видео. Переключись на Ongo 3V.")); return
+            if wi and not m["can_image"]:
+                self.after(0, lambda: self.add_bubble("assistant",
+                    "⛔ " + m["full_name"] + " не умеет картинки.")); return
+            if wc and not m["can_code"]:
+                self.after(0, lambda: self.add_bubble("assistant",
+                    "⛔ " + m["full_name"] + " не для кода. Переключись на Ongo 2.")); return
+            if wv:
+                self.after(0, lambda: self.add_bubble("assistant", "🎬 Делаю видео..."))
+                res = self.ai.generate_video(q,
+                    cb=lambda msg: self.after(0, lambda: self.add_bubble("assistant", "... " + msg)))
+                if res: self.after(0, lambda p=res: self.add_video_bubble(p))
+                else: self.after(0, lambda: self.add_bubble("assistant", "❌ Не вышло."))
+            elif wi:
+                self.after(0, lambda: self.add_bubble("assistant", "🎨 Рисую..."))
+                img = self.ai.generate_image(q,
+                    cb=lambda msg: self.after(0, lambda: self.add_bubble("assistant", "... " + msg)))
+                if img:
+                    od = os.path.join(os.path.expanduser("~"), "Pictures", "AntiCloud")
+                    os.makedirs(od, exist_ok=True)
+                    op = os.path.join(od, "gen_" + str(len(os.listdir(od)) + 1) + ".png")
+                    img.save(op)
+                    self.after(0, lambda im=img.copy(): self.add_image_bubble(im, op))
+                else: self.after(0, lambda: self.add_bubble("assistant", "❌ Не вышло."))
+            else:
+                self.after(0, lambda: self.add_bubble("assistant", "💻 Пишу код..."))
+                ans = self.ai.ask(self.current_chat, q, self.current_chat.model_key,
+                                  self.lang_var.get(), self.current_image_path)
+                self.current_chat.messages_display.append({"role": "assistant", "text": ans})
+                self.after(0, lambda: self.add_bubble("assistant", ans))
+        threading.Thread(target=worker, daemon=True).start()
+    def clear_current(self):
+        self.current_chat.history = []
+        self.current_chat.messages_display = []
+        self.current_image_path = None
+        self.img_label.configure(text="")
+        self.render_history()
+        self.add_bubble("assistant", "🧹 Чат очищен.")
+
+if __name__ == "__main__":
+    app = AntiCloudApp()
+    app.mainloop()
+`;
+
+// ===== СКАЧИВАНИЕ КОДА =====
+function downloadCode() {
+  const blob = new Blob([APP_CODE], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'anticloud2.py';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>
